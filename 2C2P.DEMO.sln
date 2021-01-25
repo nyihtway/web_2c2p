@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2C2P.DEMO.Web", "2C2P.DEMO.Web\2C2P.DEMO.Web.csproj", "{64247DC8-1C96-4C98-A012-E8B9B9597D1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution files", "solution files", "{8F94EC16-9D85-4A97-8C0F-10259AADC9F0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D2EA3DE-27A6-4026-831C-8ECE7CD3213D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64247DC8-1C96-4C98-A012-E8B9B9597D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64247DC8-1C96-4C98-A012-E8B9B9597D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64247DC8-1C96-4C98-A012-E8B9B9597D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64247DC8-1C96-4C98-A012-E8B9B9597D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{64247DC8-1C96-4C98-A012-E8B9B9597D1F} = {7D2EA3DE-27A6-4026-831C-8ECE7CD3213D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E7B6036-C1F3-4542-A5F1-975F4A1865C5}
+	EndGlobalSection
+EndGlobal
