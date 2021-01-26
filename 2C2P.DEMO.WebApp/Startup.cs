@@ -44,6 +44,8 @@ namespace _2C2P.DEMO.WebApp
 
             services.AddMediatR(typeof(Startup).Assembly);
 
+            services.AddScoped<IKafkaService, KafkaService>();
+
             var mappingConfig = new MapperConfiguration(cfg =>
             {
                 cfg.AllowNullCollections = true;

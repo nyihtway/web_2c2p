@@ -38,7 +38,6 @@ namespace _2C2P.DEMO.WebApp.AutofacModules
                 },
                 t => true);
 
-            builder.RegisterType<CrudService>().As<ICrudService>().InstancePerLifetimeScope();
         }
     }
 }
