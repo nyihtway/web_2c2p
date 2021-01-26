@@ -1,9 +1,6 @@
 ﻿using _2C2P.DEMO.Domain.Events;
 using _2C2P.DEMO.Infrastructure.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _2C2P.DEMO.WebApp.Models
 {

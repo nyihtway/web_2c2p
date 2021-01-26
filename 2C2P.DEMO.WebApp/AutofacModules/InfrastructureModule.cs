@@ -1,5 +1,4 @@
 ﻿using _2C2P.DEMO.Infrastructure;
-using _2C2P.DEMO.WebApp.Services;
 using Autofac;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;

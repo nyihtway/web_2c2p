@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using _2C2P.DEMO.WebApp.Helpers;
+﻿using _2C2P.DEMO.WebApp.Helpers;
 using _2C2P.DEMO.WebApp.Models;
 using _2C2P.DEMO.WebApp.Services.Kafka;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace _2C2P.DEMO.WebApp.Features.Upload
 {
@@ -43,13 +42,13 @@ namespace _2C2P.DEMO.WebApp.Features.Upload
                     {
                         return BadRequest(errors);
                     }
-                    
-                    if(extension == ".xml")
+
+                    if (extension == ".xml")
                     {
                         transactions = FileHelper.ExtractXML(file, _env);
                     }
 
-                    else if(extension == ".csv")
+                    else if (extension == ".csv")
                     {
                         transactions = FileHelper.ExtractCSV(file, _env);
                     }

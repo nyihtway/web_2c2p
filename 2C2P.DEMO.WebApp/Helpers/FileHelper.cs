@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using _2C2P.DEMO.WebApp.Models;
+using CsvHelper.Configuration;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
-using _2C2P.DEMO.WebApp.Models;
-using System.Xml.Serialization;
-using CsvHelper;
-using CsvHelper.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
-using Newtonsoft.Json;
 
 namespace _2C2P.DEMO.WebApp.Helpers
 {
@@ -49,7 +45,7 @@ namespace _2C2P.DEMO.WebApp.Helpers
 
                 var xmlDto = JsonConvert.DeserializeObject<TransactionXmlDto>(jsonStr);
 
-                foreach(var transaction in xmlDto.Transactions.Transaction)
+                foreach (var transaction in xmlDto.Transactions.Transaction)
                 {
                     var transEvent = new TransactionEvent()
                     {
@@ -99,7 +95,7 @@ namespace _2C2P.DEMO.WebApp.Helpers
                         TransactionId = TrimQuotes(strRow[0]),
                         Amount = Convert.ToDecimal(TrimQuotes(strRow[1])),
                         CurrencyCode = TrimQuotes(strRow[2]),
-                        TransactionDate =  transDate,
+                        TransactionDate = transDate,
                         Status = ConversionHelper.ConvertStatus(TrimQuotes(strRow[4])),
                         Env = env
                     };
