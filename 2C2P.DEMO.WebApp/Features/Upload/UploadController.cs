@@ -7,6 +7,7 @@ using _2C2P.DEMO.WebApp.Helpers;
 using _2C2P.DEMO.WebApp.Models;
 using _2C2P.DEMO.WebApp.Services.Kafka;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace _2C2P.DEMO.WebApp.Features.Upload
 {
@@ -15,9 +16,13 @@ namespace _2C2P.DEMO.WebApp.Features.Upload
     public class UploadController : ControllerBase
     {
         public readonly IKafkaService _kafkaService;
-        public UploadController(IKafkaService kafkaService)
+        public readonly IConfiguration _config;
+        public readonly string _env;
+        public UploadController(IKafkaService kafkaService, IConfiguration config)
         {
+            _config = config ?? throw new ArgumentNullException(nameof(config));
             _kafkaService = kafkaService ?? throw new ArgumentNullException(nameof(kafkaService));
+            _env = _config.GetValue<string>("Env");
         }
         [HttpPost, DisableRequestSizeLimit]
         public IActionResult Upload()
@@ -41,12 +46,12 @@ namespace _2C2P.DEMO.WebApp.Features.Upload
                     
                     if(extension == ".xml")
                     {
-                        transactions = FileHelper.ExtractXML(file);
+                        transactions = FileHelper.ExtractXML(file, _env);
                     }
 
                     else if(extension == ".csv")
                     {
-                        transactions = FileHelper.ExtractCSV(file, "dev");
+                        transactions = FileHelper.ExtractCSV(file, _env);
                     }
 
                     errors = TransactionHelper.ValidateTransactions(transactions);

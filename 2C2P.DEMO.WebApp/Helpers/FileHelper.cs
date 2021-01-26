@@ -10,6 +10,8 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Xml;
+using Newtonsoft.Json;
 
 namespace _2C2P.DEMO.WebApp.Helpers
 {
@@ -34,15 +36,36 @@ namespace _2C2P.DEMO.WebApp.Helpers
             return errors;
         }
 
-        public static List<TransactionEvent> ExtractXML(IFormFile file)
+        public static List<TransactionEvent> ExtractXML(IFormFile file, string env)
         {
-            using (var fileStream = file.OpenReadStream())
+            var result = new List<TransactionEvent>();
+            using (var fileStream = new StreamReader(file.OpenReadStream()))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(TransactionXmlDtoList));
-                var transactionXmlDtoList = (TransactionXmlDtoList)serializer.Deserialize(fileStream);
+                string xmlString = fileStream.ReadToEnd();
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(xmlString);
 
+                string jsonStr = JsonConvert.SerializeXmlNode(xmlDoc);
 
-                return new List<TransactionEvent>();
+                var xmlDto = JsonConvert.DeserializeObject<TransactionXmlDto>(jsonStr);
+
+                foreach(var transaction in xmlDto.Transactions.Transaction)
+                {
+                    var transEvent = new TransactionEvent()
+                    {
+                        Amount = Convert.ToDecimal(transaction.PaymentDetails.Amount),
+                        CurrencyCode = transaction.PaymentDetails.CurrencyCode,
+                        Env = env,
+                        Status = ConversionHelper.ConvertStatus(transaction.Status),
+                        TransactionDate = transaction.TransactionDate,
+                        TransactionId = transaction.Id
+
+                    };
+
+                    result.Add(transEvent);
+                }
+
+                return result;
             }
         }
 
