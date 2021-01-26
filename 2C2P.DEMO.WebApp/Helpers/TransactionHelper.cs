@@ -23,6 +23,10 @@ namespace _2C2P.DEMO.WebApp.Helpers
 
                 if (transaction.TransactionDate == new DateTime())
                     errors.Add($"TransactionDate is invalid for transaction {transaction.TransactionId}");
+                if(string.IsNullOrEmpty(transaction.TransactionId))
+                    errors.Add($"TransactionId is empty for transaction {transaction.TransactionId}");
+                if (transaction.TransactionId.Trim().Length > 50)
+                    errors.Add($"TransactionId is too long for transaction {transaction.TransactionId}");
             }
 
             return errors;
