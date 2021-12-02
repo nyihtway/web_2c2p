@@ -67,10 +67,7 @@ namespace _2C2P.DEMO.WebApp.Helpers
 
         public static List<TransactionEvent> ExtractCSV(IFormFile file, string env)
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
-                NewLine = Environment.NewLine,
-            };
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture, newLine: Environment.NewLine);
 
             var result = new List<TransactionEvent>();
             //using (var fileStream = file.OpenReadStream())
